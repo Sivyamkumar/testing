@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Convert · Vid2Mp3{% endblock %}
+{% block nav %}
+<form class="logout" method="post" action="{{ url_for('logout') }}">
+  <span class="who">{{ email }}</span>
+  <button type="submit" class="link">Sign out</button>
+</form>
+{% endblock %}
+{% block content %}
+<section class="card" id="app" data-max-mb="{{ max_mb }}">
+  <h1>Convert video to MP3</h1>
+  <p class="sub">Pick an MP4 and press convert. Your MP3 downloads the moment it's ready.</p>
+
+  <input id="file" type="file" accept=".mp4,video/mp4" hidden>
+  <button type="button" id="pick" class="drop" aria-describedby="hint">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+    <span id="pick-label">Upload media</span>
+    <small id="hint">MP4 only · up to {{ max_mb }} MB · or drop a file here</small>
+  </button>
+
+  <div id="chosen" class="chosen" hidden>
+    <span class="dot"></span><span id="fname"></span><span id="fsize"></span>
+  </div>
+
+  <button type="button" id="go" class="btn" disabled>Convert &amp; download MP3</button>
+
+  <div id="progress" class="progress" hidden>
+    <div class="track"><div id="fill" class="fill"></div></div>
+    <p id="status" role="status"></p>
+  </div>
+  <div id="error" class="alert" role="alert" hidden></div>
+</section>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+{% endblock %}

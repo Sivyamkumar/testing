@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Vid2Mp3{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23ff6b35'/><path d='M7 16v0M11 11v10M16 7v18M21 11v10M25 14v4' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="bars" aria-hidden="true">{% for i in range(28) %}<i style="--d:{{ (i * 37) % 11 }}; --h:{{ 20 + (i * 53) % 70 }}"></i>{% endfor %}</div>
+  <main class="shell">
+    <header class="brand">
+      <span class="logo"><svg viewBox="0 0 32 32" width="22" height="22"><path d="M7 16v0M11 11v10M16 7v18M21 11v10M25 14v4" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+      <span class="name">Vid<em>2</em>Mp3</span>
+      {% block nav %}{% endblock %}
+    </header>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
